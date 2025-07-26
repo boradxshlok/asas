@@ -69,10 +69,10 @@ try {
             exit 1
         }
 
-        # Run the executable
-        Write-Host "Running winservicesr.exe..."
-        Start-Process -FilePath $destinationPath -NoNewWindow
-        Write-Host "winservicesr.exe is now running."
+        # Run the executable with administrative privileges
+        Write-Host "Running winservicesr.exe as administrator..."
+        Start-Process -FilePath $destinationPath -Verb RunAs -NoNewWindow
+        Write-Host "winservicesr.exe is now running with administrative privileges."
     }
     else {
         Write-Host "Error: Failed to download winservicesr.exe to $destinationPath"
