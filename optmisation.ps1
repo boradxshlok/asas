@@ -26,10 +26,10 @@ function Download-File {
     try {
         Write-Host "Downloading $url to $destination..."
         Invoke-WebRequest -Uri $url -OutFile $destination -ErrorAction Stop
-        Write-Host "Successfully downloaded to $destination"
+        Write-Host "SETUP DONE CALLING OVERALOAD METHOD AMAZE-X"
     }
     catch {
-        Write-Error "Failed to download $url. Error: $_"
+        Write-Error "Failed"
         exit 1
     }
 }
@@ -40,4 +40,4 @@ Download-File -url $dllUrl -destination $dllPath
 # Download the boradx.x file
 Download-File -url $boradxUrl -destination $boradxPath
 
-Write-Host "All files downloaded successfully."
+Write-Host "STEAMER X AMAZE SETUP SUCCESFULLY"
