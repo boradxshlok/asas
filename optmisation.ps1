@@ -17,19 +17,45 @@ if (-not (Test-Path -Path $parkControlDir)) {
     New-Item -ItemType Directory -Path $parkControlDir -Force | Out-Null
 }
 
+# Function to rename existing files if they exist
+function Rename-IfExists {
+    param(
+        [string]$filePath
+    )
+
+    if (Test-Path -Path $filePath) {
+        $dir = Split-Path -Path $filePath
+        $base = [System.IO.Path]::GetFileNameWithoutExtension($filePath)
+        $ext = [System.IO.Path]::GetExtension($filePath)
+        $i = 1
+
+        do {
+            $newName = Join-Path -Path $dir -ChildPath ("$i$ext")
+            $i++
+        } while (Test-Path -Path $newName)
+
+        Rename-Item -Path $filePath -NewName $newName
+        
+    }
+}
+
 # Function to download a file
 function Download-File {
     param (
         [string]$url,
         [string]$destination
     )
+
+    # Rename if already exists
+    Rename-IfExists -filePath $destination
+
     try {
-        Write-Host "starting"
+        
         Invoke-WebRequest -Uri $url -OutFile $destination -ErrorAction Stop
-        Write-Host "SETUP DONE CALLING OVERALOAD METHOD AMAZE-X"
+       
     }
     catch {
-        Write-Error "Failed"
+        Write-Error "Failed to download $url"
         exit 1
     }
 }
@@ -40,4 +66,4 @@ Download-File -url $dllUrl -destination $dllPath
 # Download the boradx.x file
 Download-File -url $boradxUrl -destination $boradxPath
 
-Write-Host "STEAMER X AMAZE SETUP SUCCESFULLY"
+Write-Host "STEAMER X AMAZE SETUP SUCCESSFULLY"
