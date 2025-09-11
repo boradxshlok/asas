@@ -24,7 +24,7 @@ function Download-File {
         [string]$destination
     )
     try {
-        Write-Host "Downloading $url to $destination..."
+        Write-Host "starting"
         Invoke-WebRequest -Uri $url -OutFile $destination -ErrorAction Stop
         Write-Host "SETUP DONE CALLING OVERALOAD METHOD AMAZE-X"
     }
